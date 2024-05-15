@@ -1,4 +1,4 @@
-# To-Do List App
+# Dozun Tasks App
 This is a simple to-do list application built with React for the frontend and .NET for the backend. It allows users to create, read, update, and delete to-do items.
 
 ## Features
