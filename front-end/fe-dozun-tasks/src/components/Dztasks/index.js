@@ -1,4 +1,7 @@
 const Dztasks = () => {
+    const data = [];
+    alert(process.env.REACT_APP_URL_API);
+
     return (
         <main id="todolist">
         <h1>
