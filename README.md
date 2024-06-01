@@ -12,9 +12,9 @@ Edit existing to-do items.
 
 Delete to-do items.
 ## Technologies Used
-- *Frontend* : React
-- *Backend* : .NET
-- *Database* : MySQL
+- **Frontend** : React
+- **Backend** : .NET
+- **Database** : MySQL
 Getting Started
 To run this project locally, follow these steps:
 
