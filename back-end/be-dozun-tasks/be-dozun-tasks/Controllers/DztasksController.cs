@@ -14,25 +14,25 @@ namespace be_dozun_tasks.Controllers
         }
 
 
-        [HttpGet("/{id}")]
+        [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
-        [HttpPost("/{id}")]
+        [HttpPost("{id}")]
         public void Post([FromBody] string value)
         {
 
         }
 
-        [HttpPut("/{id}")]
+        [HttpPut("{id}")]
         public void Put([FromBody] string value)
         {
         
         }
 
-        [HttpDelete("/{id}")]
+        [HttpDelete("{id}")]
         public void Delete(int id)
         {
             

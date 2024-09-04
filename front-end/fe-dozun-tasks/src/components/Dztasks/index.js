@@ -4,7 +4,7 @@ import "./index.css";
 
 const Dztasks = () => {
     const data = [];
-    alert(process.env.REACT_APP_URL_API);
+    // alert(process.env.REACT_APP_URL_API);
 
     useEffect(() => {
         fetchData();
