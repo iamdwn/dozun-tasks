@@ -1,4 +1,8 @@
 
+using be_dozun_tasks.Data;
+using be_dozun_tasks.Service.Dztasks;
+using Microsoft.EntityFrameworkCore;
+
 namespace be_dozun_tasks
 {
     public class Program
@@ -13,6 +17,11 @@ namespace be_dozun_tasks
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddDbContext<DztasksDbContext>(option =>
+            {
+                option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            });
+            builder.Services.AddTransient<IDztasksService, DztasksService>();
 
             var app = builder.Build();
 

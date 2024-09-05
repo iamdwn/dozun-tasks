@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using be_dozun_tasks.Service.Dztasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace be_dozun_tasks.Controllers
@@ -7,10 +7,17 @@ namespace be_dozun_tasks.Controllers
     [ApiController]
     public class DztasksController : ControllerBase
     {
-        [HttpGet]
-        public IEnumerable<String> Get()
+        private readonly IDztasksService _dztasksService;
+
+        public DztasksController(IDztasksService dztasksService)
         {
-            return new string[] { "value1", "value2" };
+            _dztasksService = dztasksService;
+        }
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok(_dztasksService.GetTasks());
         }
 
 
@@ -29,13 +36,13 @@ namespace be_dozun_tasks.Controllers
         [HttpPut("{id}")]
         public void Put([FromBody] string value)
         {
-        
+
         }
 
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            
+
         }
     }
 }

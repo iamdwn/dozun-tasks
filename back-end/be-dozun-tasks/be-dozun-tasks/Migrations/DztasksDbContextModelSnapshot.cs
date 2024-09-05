@@ -41,6 +41,20 @@ namespace be_dozun_tasks.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("todos", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Task 1",
+                            isComplete = false
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Task 2",
+                            isComplete = false
+                        });
                 });
 #pragma warning restore 612, 618
         }

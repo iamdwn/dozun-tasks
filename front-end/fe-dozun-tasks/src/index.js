@@ -4,7 +4,5 @@ import Dztasks from './components/Dztasks'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <Dztasks/>
-  </React.StrictMode>
+  <Dztasks/>
 );

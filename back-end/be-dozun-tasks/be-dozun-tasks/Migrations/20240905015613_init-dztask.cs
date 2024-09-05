@@ -2,10 +2,12 @@
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace be_dozun_tasks.Migrations
 {
     /// <inheritdoc />
-    public partial class initdztasks : Migration
+    public partial class initdztask : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -22,6 +24,15 @@ namespace be_dozun_tasks.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_todos", x => x.Id);
+                });
+
+            migrationBuilder.InsertData(
+                table: "todos",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Task 1" },
+                    { 2, "Task 2" }
                 });
         }
 

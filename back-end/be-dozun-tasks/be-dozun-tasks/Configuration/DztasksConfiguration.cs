@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace be_dozun_tasks.Configuration
 {
-    public class DztasksConfiguration : IEntityTypeConfiguration<Todo>
+    public class DztasksConfiguration : IEntityTypeConfiguration<Models.Tasks>
     {
-        void IEntityTypeConfiguration<Todo>.Configure(EntityTypeBuilder<Todo> builder)
+        void IEntityTypeConfiguration<Models.Tasks>.Configure(EntityTypeBuilder<Models.Tasks> builder)
         {
             builder.ToTable("todos");
             builder.HasKey(t => t.Id);
