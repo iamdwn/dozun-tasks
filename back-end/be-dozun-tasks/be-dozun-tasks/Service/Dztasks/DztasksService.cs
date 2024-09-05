@@ -20,17 +20,14 @@ namespace be_dozun_tasks.Service.Dztasks
         public bool DeleteTasks(int id)
         {
             Tasks task = _dbContext.Tasks.Find(id);
-            task.isComplete = true;
+            _dbContext.Tasks.Remove(task);
             _dbContext.SaveChanges();
             return true;
         }
 
         public List<Tasks> GetTasks()
         {
-            return _dbContext.Tasks
-                .OrderByDescending(x => x.Id)
-                .Where(x => !x.isComplete)
-                .ToList();
+            return _dbContext.Tasks.OrderByDescending(x => x.Id).ToList();
         }
 
         public bool UpdateTasks(Tasks task)
