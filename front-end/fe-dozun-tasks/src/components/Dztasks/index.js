@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { addTasksAPI, delDztasksAPI, editTasksAPI, getDztasksAPI } from "../../api/dztasks";
 import "./index.css";
 
 const Dztasks = () => {
     const [tasks, setTasks] = useState([]);
     const [editId, setEditId] = useState(null);
+    const [preId, setPreId] = useState(null);
     const [taskName, setTaskName] = useState('');
+    const taskRef = useRef([]);
 
     useEffect(() => {
         fetchData();
@@ -42,6 +44,8 @@ const Dztasks = () => {
             await editTasksAPI({
                 name, id
             })
+            editTask(id);
+            setPreId(id);
             setTasks(tasks.map(task => task.id === editId ? { ...task, name } : task));
             setEditId(null);
         } else {
@@ -54,9 +58,19 @@ const Dztasks = () => {
     };
 
     const editTask = (id) => {
+        if (preId != null) {
+            if (taskRef?.current[preId].className === "fas fa-user-edit") {
+                taskRef.current[preId].className = "fas fa-edit";
+            }
+        }
         const taskToEdit = tasks.find(task => task.id === id);
         setTaskName(taskToEdit.name);
         setEditId(id);
+        if (taskRef?.current[id].className === "fas fa-edit") {
+            taskRef.current[id].className = "fas fa-user-edit";
+        } else if (taskRef?.current[id].className === "fas fa-user-edit") {
+            taskRef.current[id].className = "fas fa-edit";
+        }
     };
 
     return (
@@ -77,7 +91,10 @@ const Dztasks = () => {
                                         type="button"
                                         onClick={() => editTask(task.id)}
                                     >
-                                        <i className="fas fa-edit" />
+                                        <i 
+                                        className="fas fa-edit" 
+                                        ref = {el => taskRef.current[task.id]= el}
+                                        />
                                     </button>
                                     <button
                                         className="btn-picto"
