@@ -101,7 +101,7 @@ body {
 #todolist .btn-picto {
     border: none;
     background: none;
-    /* -webkit-appearance: none; */
+    -webkit-appearance: none;
     cursor: pointer;
     color: #FFF;
     margin-left: 5px;

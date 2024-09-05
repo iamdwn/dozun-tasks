@@ -47,6 +47,7 @@ const Dztasks = () => {
             editTask(id);
             setPreId(id);
             setTasks(tasks.map(task => task.id === editId ? { ...task, name } : task));
+            taskRef.current[id].className = "fas fa-edit";
             setEditId(null);
         } else {
             const newTask = await addTasksAPI({ name });
@@ -59,18 +60,28 @@ const Dztasks = () => {
 
     const editTask = (id) => {
         if (preId != null) {
-            if (taskRef?.current[preId].className === "fas fa-user-edit") {
                 taskRef.current[preId].className = "fas fa-edit";
-            }
         }
         const taskToEdit = tasks.find(task => task.id === id);
         setTaskName(taskToEdit.name);
         setEditId(id);
+        setPreId(id);
         if (taskRef?.current[id].className === "fas fa-edit") {
             taskRef.current[id].className = "fas fa-user-edit";
         } else if (taskRef?.current[id].className === "fas fa-user-edit") {
             taskRef.current[id].className = "fas fa-edit";
         }
+    };
+
+    const onIsCompleteTask = async (task) => {
+        var updatedTask = {
+            ...task,
+            isComplete: task.isComplete ? false : true,
+            done: !task.done
+        };
+        
+        await editTasksAPI(updatedTask);
+        setTasks(tasks.map(t => t.id === task.id ? updatedTask : t));
     };
 
     return (
@@ -83,8 +94,8 @@ const Dztasks = () => {
             <ul>
                 {Array.isArray(tasks) && tasks.length > 0 ? (
                     tasks.map((task) => (
-                        task && ( // Check if task is defined before rendering
-                            <li key={task.id} className={task.done ? "done" : ""}>
+                        task && (
+                            <li key={task.id} className={task.done ? "done" : ""} onDoubleClick={() => onIsCompleteTask(task)}>
                                 <span className="label">{task.name}</span>
                                 <div className="actions">
                                     <button className="btn-picto" 
