@@ -59,22 +59,35 @@ const Dztasks = () => {
     };
 
     const editTask = (id) => {
-        if (taskRef?.current[id].className === "fas fa-user-edit") {
-            taskRef.current[id].className = "fas fa-edit";
-        }
+        if (id === preId) {
+            if (taskRef?.current[id].className === "fas fa-user-edit") {
+                taskRef.current[id].className = "fas fa-edit";
+                setTaskName("");
+            } else if (taskRef?.current[id].className === "fas fa-edit") {
+                taskRef.current[id].className = "fas fa-user-edit";
+                const taskToEdit = tasks.find(task => task.id === id);
+                setTaskName(taskToEdit.name);
+            }
+        } else {
+            if (taskRef?.current[id].className === "fas fa-user-edit") {
+                taskRef.current[id].className = "fas fa-edit";
+                setTaskName("");
+            } else if (taskRef?.current[id].className === "fas fa-edit") {
+                taskRef.current[id].className = "fas fa-user-edit";
+                const taskToEdit = tasks.find(task => task.id === id);
+                setTaskName(taskToEdit.name);
+            }
 
-        if (taskRef?.current[id].className === "fas fa-edit") {
-            taskRef.current[id].className = "fas fa-user-edit";
-        }
+            if (preId != null) {
+                if (taskRef?.current[preId].className === "fas fa-user-edit") {
+                    taskRef.current[preId].className = "fas fa-edit";
+                    // setTaskName("");
+                }
+            }
 
-        if (preId != null) {
-            taskRef.current[preId].className = "fas fa-edit";
+            setEditId(id);
+            setPreId(id);
         }
-
-        const taskToEdit = tasks.find(task => task.id === id);
-        setTaskName(taskToEdit.name);
-        setEditId(id);
-        setPreId(id);
     };
 
     const onIsCompleteTask = async (task) => {
