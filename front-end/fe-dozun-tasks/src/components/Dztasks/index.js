@@ -59,18 +59,22 @@ const Dztasks = () => {
     };
 
     const editTask = (id) => {
-        if (preId != null) {
-                taskRef.current[preId].className = "fas fa-edit";
+        if (taskRef?.current[id].className === "fas fa-user-edit") {
+            taskRef.current[id].className = "fas fa-edit";
         }
+
+        if (taskRef?.current[id].className === "fas fa-edit") {
+            taskRef.current[id].className = "fas fa-user-edit";
+        }
+
+        if (preId != null) {
+            taskRef.current[preId].className = "fas fa-edit";
+        }
+
         const taskToEdit = tasks.find(task => task.id === id);
         setTaskName(taskToEdit.name);
         setEditId(id);
         setPreId(id);
-        if (taskRef?.current[id].className === "fas fa-edit") {
-            taskRef.current[id].className = "fas fa-user-edit";
-        } else if (taskRef?.current[id].className === "fas fa-user-edit") {
-            taskRef.current[id].className = "fas fa-edit";
-        }
     };
 
     const onIsCompleteTask = async (task) => {
@@ -95,7 +99,7 @@ const Dztasks = () => {
                 {Array.isArray(tasks) && tasks.length > 0 ? (
                     tasks.map((task) => (
                         task && (
-                            <li key={task.id} className={task.done ? "done" : ""} onDoubleClick={() => onIsCompleteTask(task)}>
+                            <li key={task.id} className={task.isComplete ? "done" : ""} onDoubleClick={() => onIsCompleteTask(task)}>
                                 <span className="label">{task.name}</span>
                                 <div className="actions">
                                     <button className="btn-picto" 
