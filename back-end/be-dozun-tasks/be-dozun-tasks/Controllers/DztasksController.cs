@@ -40,9 +40,9 @@ namespace be_dozun_tasks.Controllers
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
-
+            return Ok(_dztasksService.DeleteTasks(id));
         }
     }
 }

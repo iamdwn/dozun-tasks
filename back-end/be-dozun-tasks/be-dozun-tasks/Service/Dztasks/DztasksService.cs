@@ -17,14 +17,20 @@ namespace be_dozun_tasks.Service.Dztasks
             throw new NotImplementedException();
         }
 
-        public bool DeleteTasks(Tasks task)
+        public bool DeleteTasks(int id)
         {
-            throw new NotImplementedException();
+            Tasks task = _dbContext.Tasks.Find(id);
+            task.isComplete = true;
+            _dbContext.SaveChanges();
+            return true;
         }
 
         public List<Tasks> GetTasks()
         {
-            return _dbContext.Tasks.OrderByDescending(x => x.Id).ToList();
+            return _dbContext.Tasks
+                .OrderByDescending(x => x.Id)
+                .Where(x => !x.isComplete)
+                .ToList();
         }
 
         public bool UpdateTasks(Tasks task)

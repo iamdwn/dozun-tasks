@@ -8,3 +8,7 @@ const END_POINT = {
 export const getDztasksAPI = () => {
     return axiosClient.get(`${END_POINT.DZTASKS}`);
 }
+
+export const delDztasksAPI = (id) => {
+    return axiosClient.delete(`${END_POINT.DZTASKS}/${id}`);
+}

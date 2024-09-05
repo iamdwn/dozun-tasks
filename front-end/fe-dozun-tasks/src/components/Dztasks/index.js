@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getDztasksAPI } from "../../api/dztasks";
+import { delDztasksAPI, getDztasksAPI } from "../../api/dztasks";
 import "./index.css";
 
 const Dztasks = () => {
@@ -18,6 +18,13 @@ const Dztasks = () => {
         }
     };
 
+    const delTask = async (id) => {
+        if (window.confirm("Are you sure to delete it?")) {
+          await delDztasksAPI(id);
+          window.location.reload();
+        }
+    }
+
     return (
         <main id="todolist">
             <h1>
@@ -25,7 +32,6 @@ const Dztasks = () => {
                 <span>Just do it !!!!!</span>
             </h1>
 
-            {/* Render the tasks dynamically */}
             <ul>
                 {tasks.map((task) => (
                     <li key={task.id} className={task.done ? "done" : ""}>
@@ -39,6 +45,7 @@ const Dztasks = () => {
                                 type="button"
                                 aria-label="Delete"
                                 title="Delete"
+                                onClick={() => delTask(task.id)}
                             >
                                 <i className="fas fa-trash" />
                             </button>

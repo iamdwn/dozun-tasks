@@ -7,6 +7,6 @@ namespace be_dozun_tasks.Service.Dztasks
         List<Tasks> GetTasks();
         Boolean AddTasks(Tasks task);
         Boolean UpdateTasks(Tasks task);
-        Boolean DeleteTasks(Tasks task);
+        Boolean DeleteTasks(int id);
     }
 }
