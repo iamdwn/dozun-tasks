@@ -14,7 +14,9 @@ namespace be_dozun_tasks.Service.Dztasks
 
         public bool AddTasks(Tasks task)
         {
-            throw new NotImplementedException();
+            _dbContext.Tasks.Add(task);
+            _dbContext.SaveChanges();
+            return true;
         }
 
         public bool DeleteTasks(int id)

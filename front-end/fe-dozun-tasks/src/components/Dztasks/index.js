@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { delDztasksAPI, getDztasksAPI } from "../../api/dztasks";
+import { addTasksAPI, delDztasksAPI, getDztasksAPI } from "../../api/dztasks";
 import "./index.css";
 
 const Dztasks = () => {
@@ -23,6 +23,20 @@ const Dztasks = () => {
           await delDztasksAPI(id);
           window.location.reload();
         }
+    }
+
+    const addOrEditTasks = async (event) => {
+      event.preventDefault();
+      const val = event.target[0].value;
+      const id = event.target[1].value;
+      if (id) {
+        
+      } else {
+        await addTasksAPI({
+          name: val
+        });
+      }
+      fetchData();
     }
 
     return (
@@ -54,11 +68,11 @@ const Dztasks = () => {
                 ))}
             </ul>
 
-            <form>
+            <form onSubmit={addOrEditTasks}>
                 <label htmlFor="name">Add a new task in here</label>
                 <input type="text" name="name" id="name" />
                 <input type="text" name="id" id="id" />
-                <button type="button">Add new</button>
+                <button type="submit">Add new</button>
             </form>
         </main>
     );

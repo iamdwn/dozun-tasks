@@ -1,4 +1,5 @@
-﻿using be_dozun_tasks.Service.Dztasks;
+﻿using be_dozun_tasks.Models;
+using be_dozun_tasks.Service.Dztasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace be_dozun_tasks.Controllers
@@ -27,10 +28,10 @@ namespace be_dozun_tasks.Controllers
             return "value";
         }
 
-        [HttpPost("{id}")]
-        public void Post([FromBody] string value)
+        [HttpPost]
+        public IActionResult Post(Tasks task)
         {
-
+            return Ok(_dztasksService.AddTasks(task));
         }
 
         [HttpPut("{id}")]
