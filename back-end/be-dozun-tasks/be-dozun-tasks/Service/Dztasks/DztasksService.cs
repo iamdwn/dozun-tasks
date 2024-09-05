@@ -34,7 +34,9 @@ namespace be_dozun_tasks.Service.Dztasks
 
         public bool UpdateTasks(Tasks task)
         {
-            throw new NotImplementedException();
+            _dbContext.Tasks.Update(task);
+            _dbContext.SaveChanges();
+            return true;
         }
     }
 }

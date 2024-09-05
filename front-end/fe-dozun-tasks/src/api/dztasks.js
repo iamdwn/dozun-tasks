@@ -16,3 +16,7 @@ export const delDztasksAPI = (id) => {
 export const addTasksAPI = (task) => {
     return axiosClient.post(`${END_POINT.DZTASKS}`, task);
 }
+
+export const editTasksAPI = (task) => {
+    return axiosClient.put(`${END_POINT.DZTASKS}`, task);
+}

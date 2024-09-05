@@ -21,23 +21,16 @@ namespace be_dozun_tasks.Controllers
             return Ok(_dztasksService.GetTasks());
         }
 
-
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
         [HttpPost]
         public IActionResult Post(Tasks task)
         {
             return Ok(_dztasksService.AddTasks(task));
         }
 
-        [HttpPut("{id}")]
-        public void Put([FromBody] string value)
+        [HttpPut]
+        public IActionResult Put(Tasks task)
         {
-
+            return Ok(_dztasksService.UpdateTasks(task));
         }
 
         [HttpDelete("{id}")]
