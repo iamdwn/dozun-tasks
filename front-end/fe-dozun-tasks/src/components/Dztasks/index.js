@@ -68,6 +68,8 @@ const Dztasks = () => {
                 const taskToEdit = tasks.find(task => task.id === id);
                 setTaskName(taskToEdit.name);
             }
+
+            window.location.reload();
         } else {
             if (taskRef?.current[id].className === "fas fa-user-edit") {
                 taskRef.current[id].className = "fas fa-edit";
@@ -88,6 +90,8 @@ const Dztasks = () => {
             setEditId(id);
             setPreId(id);
         }
+
+        
     };
 
     const onIsCompleteTask = async (task) => {
