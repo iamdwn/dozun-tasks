@@ -27,4 +27,4 @@ Node.js installed on your machine.
 To run this project locally, follow step:
 
 ```bash
-git clone https://github.com/yourusername/todo-list.git
+git clone https://github.com/iamdwn/dozun-tasks.git
